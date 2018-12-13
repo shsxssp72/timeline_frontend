@@ -1,6 +1,17 @@
 import React from 'react';
-import 'semantic-ui-css/semantic.min.css'
-import {Button, Divider, Form, Grid, Header, Icon, Image, Input, Message, Segment} from "semantic-ui-react";
+import 'semantic-ui-css/semantic.min.css';
+import {
+	Button,
+	Divider,
+	Form,
+	Grid,
+	Header,
+	Icon,
+	Image,
+	Input,
+	Message,
+	Segment
+} from "semantic-ui-react";
 
 const LoginForm = () => (
 	<Segment className={'login-form'}>
