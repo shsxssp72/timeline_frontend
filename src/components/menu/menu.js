@@ -1,28 +1,88 @@
 import React from 'react';
 import {
-  Link
+    Link
 } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import 'semantic-ui-css/semantic.min.css';
+import {
+    switchHome,
+    switchIndex,
+    switchLogin,
+    switchHistory,
+    switchPublish,
+    changeText
+} from "../../redux/actions";
+import {connect} from "react-redux";
 
-export default () => {
-  return (
-    <div class="ui inverted segment">
-  		<div class="ui inverted secondary pointing menu">
-    	  <Link to="/index" class="active item">
-      		主页
-    	  </Link>
-        <Link to="/publish" class="item">
-          发布
-        </Link>
-        <Link to="/history" class="item">
-          历史
-        </Link>
-        <div class="right menu">
-          <Link to="/login" class="item">
-            登录
-          </Link>  
-        </div>
-  		</div>
-		</div>
-  );
+class Menu extends React.Component {
+    static propTypes = {
+        home: PropTypes.string,
+        index: PropTypes.string,
+        publish: PropTypes.string,
+        history: PropTypes.string,
+        login: PropTypes.string,
+        switchHome: PropTypes.func,
+        switchIndex: PropTypes.func,
+        switchPublish: PropTypes.func,
+        switchHistory: PropTypes.func,
+        switchLogin: PropTypes.func
+    };
+
+    render() {
+        return (
+            <div className="ui inverted vertical segment">
+                <div className="ui large secondary inverted pointing menu">
+                    <Link to="/" className={this.props.home} onClick={this.props.switchHome}>
+                        Home
+                    </Link>
+                    <Link to="/index" className={this.props.index} onClick={this.props.switchIndex}>
+                        TimeLine
+                    </Link>
+                    <Link to="/publish" className={this.props.publish} onClick={this.props.switchPublish}>
+                        Publish
+                    </Link>
+                    <Link to="/history" className={this.props.history} onClick={this.props.switchHistory}>
+                        History
+                    </Link>
+                    <div className="right item">
+                        <Link to="/login" className="ui inverted button">
+                            Log in
+                        </Link>
+                        <a className="ui inverted button">
+                            Sign Up
+                        </a>
+                    </div>
+                </div>
+            </div>
+        );
+    };
 }
+
+const mapStateToProps = (state, ownProps) => ({
+    home: state._currentPage.home,
+    index: state._currentPage.index,
+    publish: state._currentPage.publish,
+    history: state._currentPage.history,
+    login: state._currentPage.login
+});
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    switchHome: () => {
+        dispatch(switchHome())
+    },
+    switchIndex: () => {
+        dispatch(switchIndex())
+    },
+    switchHistory: () => {
+        dispatch(switchHistory())
+    },
+    switchPublish: () => {
+        dispatch(switchPublish());
+        dispatch(changeText('switch to publish'))
+    },
+    switchLogin: () => {
+        dispatch(switchLogin())
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);
