@@ -11,6 +11,7 @@ import store from './redux';
 import Home from "./components/home";
 import TLE from "./components/time-line-events";
 import LoginForm from "./model/login";
+import RegisterForm from "./model/register";
 import Publish from "./components/publish";
 import History from "./components/history";
 
@@ -24,6 +25,7 @@ ReactDOM.render(
 				<Route path="/login" component={LoginForm} />
 				<Route path="/publish" component={Publish} />
 				<Route path="/history" component={History} />
+				<Route path="/register" component={RegisterForm} />
 			</div>
 		</BrowserRouter>
 	</Provider>, document.getElementById('root'));

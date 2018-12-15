@@ -4,6 +4,8 @@ export const SWITCH_INDEX = 'SWITCH_INDEX';
 export const SWITCH_PUBLISH = 'SWITCH_PUBLISH';
 export const SWITCH_HISTORY = 'SWITCH_HISTORY';
 export const SWITCH_LOGIN = 'SWITCH_LOGIN';
+//页面加载完成
+export const MOUNT_COMPLETE = 'MOUNT_COMPLETE';
 //更新
 export const UPDATE = 'UPDATE';
 //更多
@@ -21,6 +23,11 @@ export const DELETE = 'DELETE';
 //测试
 export const TEST = 'TEST';
 
+export function mountComplete() {
+    return{
+        type: MOUNT_COMPLETE
+    }
+}
 
 export function switchHome() {
     return{

@@ -1,5 +1,5 @@
 import React from 'react';
-import './index.css';
+// import './index.css';
 import 'semantic-ui-css/semantic.min.css'
 import {Form,Grid,Header,Icon,Message,Segment,Transition} from "semantic-ui-react";
 import SubmitButton from "./SubmitButton";

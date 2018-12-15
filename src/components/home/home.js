@@ -15,7 +15,9 @@ const globalStyles = {
 
 class Home extends React.Component {
     static propTypes = {
+        visible: PropTypes.bool,
         switchIndex: PropTypes.func,
+        mountComplete: PropTypes.func
     };
 
     render() {

@@ -48,9 +48,9 @@ class Menu extends React.Component {
                         <Link to="/login" className="ui inverted button">
                             Log in
                         </Link>
-                        <a className="ui inverted button">
+                        <Link to="/register" className="ui inverted button">
                             Sign Up
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>
