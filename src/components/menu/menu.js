@@ -7,12 +7,13 @@ import 'semantic-ui-css/semantic.min.css';
 import {
     switchHome,
     switchIndex,
-    switchLogin,
     switchHistory,
     switchPublish,
-    changeText
+    changeText,
+    logOut
 } from "../../redux/actions";
 import {connect} from "react-redux";
+import history from "../../history";
 
 class Menu extends React.Component {
     static propTypes = {
@@ -20,15 +21,37 @@ class Menu extends React.Component {
         index: PropTypes.string,
         publish: PropTypes.string,
         history: PropTypes.string,
-        login: PropTypes.string,
+        isLogin: PropTypes.bool,
         switchHome: PropTypes.func,
         switchIndex: PropTypes.func,
         switchPublish: PropTypes.func,
         switchHistory: PropTypes.func,
-        switchLogin: PropTypes.func
+        switchLogin: PropTypes.func,
+        onLogOut: PropTypes.func
     };
 
     render() {
+
+        let right;
+        if(this.props.isLogin){
+            right = (
+                <a className="ui inverted button" onClick={this.props.onLogOut}>
+                    Log Out
+                </a>
+            )
+        }else{
+            right = (
+                <div>
+                    <Link to="/login" className="ui inverted button">
+                        Log in
+                    </Link>
+                    <Link to="/register" className="ui inverted button">
+                        Sign Up
+                    </Link>
+                </div>
+            )
+        }
+
         return (
             <div className="ui inverted vertical segment">
                 <div className="ui large secondary inverted pointing menu">
@@ -45,12 +68,7 @@ class Menu extends React.Component {
                         History
                     </Link>
                     <div className="right item">
-                        <Link to="/login" className="ui inverted button">
-                            Log in
-                        </Link>
-                        <Link to="/register" className="ui inverted button">
-                            Sign Up
-                        </Link>
+                        {right}
                     </div>
                 </div>
             </div>
@@ -63,7 +81,7 @@ const mapStateToProps = (state, ownProps) => ({
     index: state._currentPage.index,
     publish: state._currentPage.publish,
     history: state._currentPage.history,
-    login: state._currentPage.login
+    isLogin: state._loginReducer.isLogin
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -80,8 +98,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         dispatch(switchPublish());
         dispatch(changeText('switch to publish'))
     },
-    switchLogin: () => {
-        dispatch(switchLogin())
+    onLogOut: () => {
+        dispatch(logOut());
+        dispatch(switchHome());
+        history.push('/');
     }
 });
 
