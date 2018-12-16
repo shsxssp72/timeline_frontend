@@ -7,6 +7,7 @@ import {
 import {connect} from "react-redux";
 import PropTypes from 'prop-types';
 import Menu from '../menu';
+import {Icon} from "semantic-ui-react";
 
 const globalStyles = {
     backgroundColor: 'rgb(238, 239, 239)',
@@ -33,14 +34,14 @@ class TLE extends React.Component{
         });
         return (
             <div style={globalStyles}>
-                <h2 className="ui icon header" style={{margin: '30px 0px 0px 35px'}}>
-                    <i className="clock icon"/>
+                <h2 className="ui icon header" style={{margin: '30px 0px 0px 35px',color:'#7f7f7f'}}>
+                    <Icon name={'clock'} />
                     <div className="content">
                         Time Line
                     </div>
                 </h2>
-                <div className="ui labeled right floated button" tabIndex="0" style={{margin: '50px'}}>
-                    <div className="ui grey button">更新</div>
+                <div className="ui labeled right floated button" tabIndex="0" style={{margin: '50px',backgroundColor:'#1BB394',color:'#E5FFFB'}}>
+                    <div className="ui grey button" style={{backgroundColor:'#1BB394',color:'#E5FFFB'}}>Update</div>
                     <a className="ui basic label">
                         0
                     </a>
@@ -48,7 +49,7 @@ class TLE extends React.Component{
                 <Timeline style={{fontSize: 'medium', margin: '0px 0px 0px 70px'}}>
                     {showEvents}
                 </Timeline>
-                <div className="ui grey right floated button" style={{margin: '50px'}}>更多..</div>
+                <div className="ui right floated button" style={{margin: '50px',backgroundColor:'#1BB394',color:'#E5FFFB'}}>More...</div>
             </div>
         );
     }
