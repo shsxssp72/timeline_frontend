@@ -1,8 +1,12 @@
 import React from 'react';
-import ReactDOM from "react-dom";
-import 'semantic-ui-css/semantic.min.css'
-import {BrowserRouter,Route} from 'react-router-dom';
-import {Provider} from 'react-redux';
+import ReactDOM from 'react-dom';
+import {
+	Route,
+	BrowserRouter,
+	Router
+} from 'react-router-dom';
+import history from './history';
+import { Provider } from 'react-redux';
 import App from './App';
 import store from './redux';
 import Home from "./components/home";
@@ -11,22 +15,19 @@ import LoginForm from "./model/login";
 import RegisterForm from "./model/register";
 import Publish from "./components/publish";
 import History from "./components/history";
+import requireAuthentication from "./components/checkAuth";
 
 ReactDOM.render(
 	<Provider store={store}>
-		<BrowserRouter>
+		<Router history={history}>
 			<div>
-				<App/>
-				<Route exact path="/" component={Home}/>
-				<Route path="/index" component={TLE}/>
-				<Route path="/login" component={LoginForm}/>
-				<Route path="/publish" component={Publish}/>
-				{/*<Route path="/history" component={History}/>*/}
-				<Route path="/register" component={RegisterForm}/>
+				<App />
+				<Route exact path="/" component={Home} />
+				<Route path="/index" component={requireAuthentication(TLE)} />
+				<Route path="/login" component={LoginForm} />
+				<Route path="/publish" component={requireAuthentication(Publish)} />
+				<Route path="/history" component={requireAuthentication(History)} />
+				<Route path="/register" component={RegisterForm} />
 			</div>
-		</BrowserRouter>
-	</Provider>,document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
+		</Router>
+	</Provider>, document.getElementById('root'));

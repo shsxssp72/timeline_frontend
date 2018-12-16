@@ -3,10 +3,25 @@ import React from 'react';
 import 'semantic-ui-css/semantic.min.css'
 import {Form,Grid,Header,Icon,Message,Segment,Transition} from "semantic-ui-react";
 import SubmitButton from "./SubmitButton";
-
+import {
+	changeRegName,
+	changeRegNick,
+	changeRegPass
+} from "../redux/actions";
+import PropTypes from 'prop-types';
+import {connect} from "react-redux";
 
 class RegisterForm extends React.Component
 {
+	static propTypes = {
+		displayname: PropTypes.string,
+		username: PropTypes.string,
+		password: PropTypes.string,
+		onChangeRegName: PropTypes.func,
+		onChangeRegNick: PropTypes.func,
+		onChangeRegPass: PropTypes.func
+	};
+
 	constructor(props)
 	{
 		super(props);
@@ -50,11 +65,12 @@ class RegisterForm extends React.Component
 								         list={['It seems that the username has been snapped up. Why not try another username?']}/>
 
 								<Form.Input icon={'user'} iconPosition={'left'} placeholder={'Username'}
-								            type={'text'} error={this.state.errorOccurs}/>
+								            type={'text'} error={this.state.errorOccurs}
+											value={this.props.username} onChange={this.props.onChangeRegName}/>
 								<Form.Input icon={'address card'} iconPosition={'left'} placeholder={'Nickname'}
-								            type={'text'}/>
+								            type={'text'} value={this.props.displayname} onChange={this.props.onChangeRegNick}/>
 								<Form.Input icon={'lock'} iconPosition={'left'} placeholder={'Password'}
-								            type={'password'}/>
+								            type={'password'} value={this.props.password} onChange={this.props.onChangeRegPass}/>
 								<Form.Checkbox inline label={'I agree to the terms and conditions'}/>
 								<SubmitButton name={'Register'} expireTime={2}/>
 							</Form>
@@ -70,4 +86,22 @@ class RegisterForm extends React.Component
 	}
 }
 
-export default RegisterForm;
+const mapStateToProps = (state, ownProps) => ({
+	displayname: state._registerReducer.displayname,
+	username: state._registerReducer.username,
+	password: state._registerReducer.password
+});
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+	onChangeRegName: (event) => {
+		dispatch(changeRegName(event.target.value))
+	},
+	onChangeRegNick: (event) => {
+		dispatch(changeRegNick(event.target.value))
+	},
+	onChangeRegPass: (event) => {
+		dispatch(changeRegPass(event.target.value))
+	}
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm);

@@ -2,9 +2,26 @@ import React from 'react';
 import 'semantic-ui-css/semantic.min.css'
 import {Button,Icon} from "semantic-ui-react";
 import PropTypes from 'prop-types'
+import {
+	login,
+	register,
+	switchIndex
+} from "../redux/actions";
+import {connect} from "react-redux";
 
 class SubmitButton extends React.Component
 {
+	static propTypes = {
+		username: PropTypes.string,
+		password: PropTypes.string,
+		displayname: PropTypes.string,
+		regname: PropTypes.string,
+		regpassword: PropTypes.string,
+		isLogin: PropTypes.bool,
+		onLogin: PropTypes.func,
+		onRegister: PropTypes.func
+	};
+
 	expireTime;
 
 	constructor(props)
@@ -29,6 +46,19 @@ class SubmitButton extends React.Component
 	{
 		this.setState({isClicked:true});
 		this.interval=setInterval(this.tick,1000);
+
+		if(this.props.name === 'Login'){
+			let username = this.props.username;
+			let password = this.props.password;
+
+			this.props.onLogin(password, username);
+		}else if (this.props.name === 'Register') {
+			let displayname = this.props.displayname;
+			let regname = this.props.regname;
+			let regpassword = this.props.regpassword;
+
+			this.props.onRegister(displayname, regpassword, regname);
+		}
 	}
 
 	render()
@@ -65,4 +95,23 @@ SubmitButton.propTypes=
 		expireTime:PropTypes.number,
 	};
 
-export default SubmitButton;
+const mapStateToProps = (state, ownProps) => ({
+	username: state._loginReducer.username,
+	password: state._loginReducer.password,
+	displayname: state._registerReducer.displayname,
+	regname: state._registerReducer.username,
+	regpassword: state._registerReducer.password,
+	isLogin: state._loginReducer.isLogin
+});
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+	onLogin: (password, username) => {
+		dispatch(login(password, username));
+		dispatch(switchIndex());
+	},
+	onRegister: (displayname, password, username) => {
+		dispatch(register(displayname, password, username));
+	}
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SubmitButton);
