@@ -63,7 +63,7 @@ class StickyMenu extends React.Component
 		{
 			right=(
 				<Menu.Menu position='right'>
-					<Button content={'Log out'} onClick={this.props.onLogOut} style={MenuItemStyle}/>
+					<Menu.Item content={'Log out'} onClick={this.props.onLogOut} style={MenuItemStyle}/>
 				</Menu.Menu>
 			)
 		}

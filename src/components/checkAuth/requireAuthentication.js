@@ -1,23 +1,34 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import history from '../../history';
 import PropTypes from 'prop-types';
+import {
+    getTimeline
+} from "../../redux/actions";
 
 export default function requireAuthentication(Component) {
-    class AuthenticatedComponent extends React.Component{
+    class AuthenticatedComponent extends React.Component {
         static propTypes = {
-            isLogin: PropTypes.bool
+            isLogin: PropTypes.bool,
+            token: PropTypes.string,
+            start: PropTypes.string,
+            end: PropTypes.string,
+            getTimeline: PropTypes.func
         };
 
         componentWillMount() {
             this.checkAuth();
         }
+
         componentWillReceiveProps(nextProps, nextContext) {
             this.checkAuth();
         }
-        checkAuth(){
-            if (!this.props.isLogin){
+
+        checkAuth() {
+            if (!this.props.isLogin) {
                 history.push('/');
+            }else{
+                this.props.getTimeline(this.props.token, this.props.start.toISOString(), this.props.end.toISOString())
             }
         }
 
@@ -33,8 +44,17 @@ export default function requireAuthentication(Component) {
     }
 
     const mapStateToProps = (state, ownProps) => ({
-        isLogin: state._loginReducer.isLogin
+        isLogin: state._loginReducer.isLogin,
+        token: state._loginReducer.jwtToken,
+        start: state._timelineEvents.start,
+        end: state._timelineEvents.end
     });
 
-    return connect(mapStateToProps)(AuthenticatedComponent);
+    const mapDispatchToProps = (dispatch, ownProps) => ({
+        getTimeline: (token, start, end) => {
+            dispatch(getTimeline(token, start, end))
+        }
+    });
+
+    return connect(mapStateToProps, mapDispatchToProps)(AuthenticatedComponent);
 }

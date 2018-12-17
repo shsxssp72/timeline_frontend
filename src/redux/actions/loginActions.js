@@ -1,5 +1,5 @@
 import history from '../../history';
-import {CHANGE_PASSWORD, CHANGE_USERNAME, LOG_OUT, LOGIN_FAIL, LOGIN_SUCCESS} from "./actionTypes";
+import {CHANGE_PASSWORD, CHANGE_USERNAME, LOG_OUT, LOGIN_FAIL, LOGIN_SUCCESS, TIMELINE_INIT, USERID_SET} from "./actionTypes";
 
 export function login(password, username) {
     // return (dispatch) => {
@@ -24,7 +24,10 @@ export function login(password, username) {
             console.log(data);
             if(data.status === '200'){
                 dispatch({type: LOGIN_SUCCESS, payload: data.jwtToken});
-                history.push('/index');
+                dispatch({type: USERID_SET, payload: data.result});
+                let end = new Date();
+                dispatch({type: TIMELINE_INIT, payload: end});
+                history.push('/');
             }else{
                 dispatch({type: LOGIN_FAIL})
             }

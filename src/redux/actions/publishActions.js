@@ -12,9 +12,3 @@ export function changeText(text) {
         payload: text
     }
 }
-
-export function testAction() {
-    return {
-        type: TEST
-    }
-}

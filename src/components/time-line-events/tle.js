@@ -4,10 +4,13 @@ import {
     Timeline,
     TimelineEvent
 } from '../time-line';
+import {
+    getTimeline, moreEvents, updateEvents
+} from "../../redux/actions/timelineActions";
 import {connect} from "react-redux";
 import PropTypes from 'prop-types';
+import {Button,Header,Icon,Segment} from "semantic-ui-react";
 import Menu from '../menu';
-import {Icon} from "semantic-ui-react";
 
 const globalStyles = {
     backgroundColor: 'rgb(238, 239, 239)',
@@ -18,7 +21,29 @@ const globalStyles = {
 
 class TLE extends React.Component{
     static propTypes = {
-        timelineEvents: PropTypes.array
+        timelineEvents: PropTypes.array,
+        token: PropTypes.string,
+        start: PropTypes.string,
+        end: PropTypes.string,
+        onGetTimeline: PropTypes.func,
+        onUpdate: PropTypes.func,
+        onMore: PropTypes.func
+    };
+
+    handleUpdateClick = () => {
+        let d = new Date();
+        this.props.onUpdate(d);
+
+        this.props.onGetTimeline(this.props.token, this.props.start.toISOString(), this.props.end.toISOString());
+    };
+
+    handleMoreClick = () => {
+        let d = this.props.start;
+        let year = d.getFullYear()-1;
+        d.setFullYear(year);
+        this.props.onMore(d);
+
+        this.props.onGetTimeline(this.props.token, this.props.start.toISOString(), this.props.end.toISOString());
     };
 
     render() {
@@ -34,14 +59,14 @@ class TLE extends React.Component{
         });
         return (
             <div style={globalStyles}>
-                <h2 className="ui icon header" style={{margin: '30px 0px 0px 35px',color:'#7f7f7f'}}>
-                    <Icon name={'clock'} />
+                <h2 className="ui icon header" style={{margin: '30px 0px 0px 35px'}}>
+                    <i className="clock icon"/>
                     <div className="content">
                         Time Line
                     </div>
                 </h2>
-                <div className="ui labeled right floated button" tabIndex="0" style={{margin: '50px',backgroundColor:'#1BB394',color:'#E5FFFB'}}>
-                    <div className="ui grey button" style={{backgroundColor:'#1BB394',color:'#E5FFFB'}}>Update</div>
+                <div className="ui labeled right floated button" tabIndex="0" style={{margin: '50px'}}>
+                    <div className="ui grey button" onClick={this.handleUpdateClick}>更新</div>
                     <a className="ui basic label">
                         0
                     </a>
@@ -49,14 +74,29 @@ class TLE extends React.Component{
                 <Timeline style={{fontSize: 'medium', margin: '0px 0px 0px 70px'}}>
                     {showEvents}
                 </Timeline>
-                <div className="ui right floated button" style={{margin: '50px',backgroundColor:'#1BB394',color:'#E5FFFB'}}>More...</div>
+                <div className="ui grey right floated button" style={{margin: '50px'}} onClick={this.handleMoreClick}>更多..</div>
             </div>
         );
     }
 }
 
 const mapStateToProps = (state, ownProps) =>({
-    timelineEvents : state._eventsUpdate.currentEvents
+    timelineEvents : state._timelineEvents.currentEvents,
+    token: state._loginReducer.jwtToken,
+    start: state._timelineEvents.start,
+    end: state._timelineEvents.end
 });
 
-export default connect(mapStateToProps)(TLE);
+const mapDiapatchToProps = (dispatch, ownProps) => ({
+    onGetTimeline: (token, start, end) => {
+        dispatch(getTimeline(token, start, end));
+    },
+    onUpdate: (end) => {
+        dispatch(updateEvents(end));
+    },
+    onMore: (start) => {
+        dispatch(moreEvents(start));
+    }
+});
+
+export default connect(mapStateToProps, mapDiapatchToProps)(TLE);
