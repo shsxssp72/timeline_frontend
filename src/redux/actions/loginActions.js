@@ -1,5 +1,6 @@
 import history from '../../history';
 import {CHANGE_PASSWORD, CHANGE_USERNAME, LOG_OUT, LOGIN_FAIL, LOGIN_SUCCESS, TIMELINE_INIT, USERID_SET} from "./actionTypes";
+import { switchHome } from "./pageSwitchActions";
 
 export function login(password, username) {
     // return (dispatch) => {
@@ -28,6 +29,7 @@ export function login(password, username) {
                 let end = new Date();
                 dispatch({type: TIMELINE_INIT, payload: end});
                 history.push('/');
+                dispatch(switchHome());
             }else{
                 dispatch({type: LOGIN_FAIL})
             }

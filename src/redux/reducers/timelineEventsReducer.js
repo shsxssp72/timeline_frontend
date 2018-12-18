@@ -14,14 +14,19 @@ export default function timelineEvents(state=initialState, action) {
             startTime = Object.assign(startTime, action.payload);
             let year = startTime.getFullYear();
             startTime.setFullYear(year-100);
-            return {...state, start: startTime, end: action.payload};
+            let endTime1 = new Date(action.payload);
+            endTime1.setDate(endTime1.getDate()+1);
+            return {...state, start: startTime, end: endTime1};
         case GET_TIMELINE:
-            let arr = action.payload.map((item, index) => (
-                { name: item.displayName, time: item.publishTime, content: item.content, img: ''}
-            ));
+            let arr = action.payload.map((item, index) => {
+                let publish = new Date(Date.parse(item.publishTime));
+                return { name: item.displayName, time: publish.toDateString(), content: item.content, img: ''}
+            });
             return {...state, currentEvents: arr};
         case UPDATE:
-            return {...state, end: action.payload};
+            let endTime2 = new Date(action.payload);
+            endTime2.setDate(endTime2.getDate()+1);
+            return {...state, end: endTime2};
         case MORE:
             return {...state, start: action.payload};
         default:

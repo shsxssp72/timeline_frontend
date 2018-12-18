@@ -1,4 +1,4 @@
-import {SWITCH_HISTORY, SWITCH_HOME, SWITCH_INDEX, SWITCH_LOGIN, SWITCH_PUBLISH} from "./actionTypes";
+import {SWITCH_HOME, SWITCH_INDEX, SWITCH_PUBLISH, SWITCH_LOGIN, SWITCH_REGISTER} from "./actionTypes";
 
 export function switchHome() {
     return {
@@ -18,14 +18,14 @@ export function switchPublish() {
     }
 }
 
-export function switchHistory() {
-    return {
-        type: SWITCH_HISTORY
-    }
-}
-
 export function switchLogin() {
     return {
         type: SWITCH_LOGIN
+    }
+}
+
+export function switchRegister() {
+    return {
+        type: SWITCH_REGISTER
     }
 }

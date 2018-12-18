@@ -1,11 +1,9 @@
 //页面切换
-import History from "../../components/history";
-
 export const SWITCH_HOME = 'SWITCH_HOME';
 export const SWITCH_INDEX = 'SWITCH_INDEX';
 export const SWITCH_PUBLISH = 'SWITCH_PUBLISH';
-export const SWITCH_HISTORY = 'SWITCH_HISTORY';
-export const SWITCH_LOGIN = 'SWITCH_LOGIN';
+export const SWITCH_LOGIN =  'SWITCH_LOGIN';
+export const SWITCH_REGISTER = 'SWITCH_REGISTER';
 
 //登录
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -32,7 +30,8 @@ export const UPDATE = 'UPDATE';
 export const MORE = 'MORE';
 
 //发布
-export const PUBLISH = 'PUBLISH';
+export const PUBLISH_SUCCESS = 'PUBLISH_SUCCESS';
+export const PUBLISH_FAIL = 'PUBLISH_FAIL';
 //上载图片
 export const PICTURE = 'PICTURE';
 //输入变更

@@ -15,8 +15,14 @@ class Publish extends React.Component
 {
 	static propTypes={
 		text:PropTypes.string,
+		userid: PropTypes.string,
+		token: PropTypes.string,
 		onChangeText:PropTypes.func,
 		publishContent:PropTypes.func
+	};
+
+	handlePublishClick = () => {
+		this.props.publishContent(this.props.token, this.props.userid, this.props.text);
 	};
 
 	render()
@@ -30,19 +36,15 @@ class Publish extends React.Component
 				</Header>
 				<Button content={'Upload Picture'}
 				        style={{backgroundColor:'#1BB394',color:'#E5FFFB',margin:'0px 0px 0px 100px'}}/>
-				{/*<div className="ui button" style={{margin:'10px 0px 10px 100px'}}>Upload Picture</div>*/}
 				<div className="ui image" src="#"/>
 				<div className="ui form" style={{margin:'1em 7em 1em 7em'}}>
 					<div className="field">
-						<input type='text' value={this.props.text} onChange={this.props.onChangeText}/>
+						<textarea value={this.props.text} onChange={this.props.onChangeText}/>
 					</div>
 					<Button floated
-					        onClick={this.props.publishContent}
+					        onClick={this.handlePublishClick}
 					        content={'Submit'}
 					        style={{backgroundColor:'#1BB394',color:'#E5FFFB',float:'right'}}/>
-					{/*<button className="ui grey right floated button" type="submit"*/}
-					        {/*>Submit*/}
-					{/*</button>*/}
 				</div>
 			</Segment>
 		);
@@ -50,7 +52,9 @@ class Publish extends React.Component
 }
 
 const mapStateToProps=(state,ownProps)=>({
-	text:state._eventsUpdate.text
+	text:state._publishEvents.text,
+	userid: state._loginReducer.userid,
+	token: state._loginReducer.jwtToken
 });
 
 const mapDispatchToProps=(dispatch,ownProps)=>({
@@ -58,12 +62,10 @@ const mapDispatchToProps=(dispatch,ownProps)=>({
 	{
 		dispatch(changeText(event.target.value));
 	},
-	publishContent:()=>
+	publishContent:(token, userid, content)=>
 	{
-		dispatch(publishContent());
-		dispatch(changeText(''))
+		dispatch(publishContent(token, userid, content))
 	}
-
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(Publish);

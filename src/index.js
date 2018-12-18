@@ -14,7 +14,6 @@ import TLE from "./components/time-line-events";
 import LoginForm from "./model/login";
 import RegisterForm from "./model/register";
 import Publish from "./components/publish";
-import History from "./components/history";
 import requireAuthentication from "./components/checkAuth";
 
 ReactDOM.render(
@@ -26,7 +25,6 @@ ReactDOM.render(
 				<Route path="/index" component={requireAuthentication(TLE)} />
 				<Route path="/login" component={LoginForm} />
 				<Route path="/publish" component={requireAuthentication(Publish)} />
-				<Route path="/history" component={requireAuthentication(History)} />
 				<Route path="/register" component={RegisterForm} />
 			</div>
 		</Router>

@@ -1,12 +1,4 @@
-import { TIMELINE_INIT, GET_TIMELINE, UPDATE, MORE } from "./actionTypes";
-import history from '../../history';
-
-export function timelineInit(end) {
-    return {
-        type: TIMELINE_INIT,
-        payload: end
-    }
-}
+import { GET_TIMELINE, UPDATE, MORE } from "./actionTypes";
 
 export function updateEvents(end) {
     return {

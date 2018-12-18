@@ -58,24 +58,21 @@ class TLE extends React.Component{
             );
         });
         return (
-            <div style={globalStyles}>
-                <h2 className="ui icon header" style={{margin: '30px 0px 0px 35px'}}>
-                    <i className="clock icon"/>
+            <Segment style={globalStyles}>
+                <Header as={'h2'} className="ui icon header" style={{margin: '30px 0px 0px 35px', color:'#7f7f7f'}}>
+                    <Icon name="clock icon"/>
                     <div className="content">
                         Time Line
                     </div>
-                </h2>
-                <div className="ui labeled right floated button" tabIndex="0" style={{margin: '50px'}}>
-                    <div className="ui grey button" onClick={this.handleUpdateClick}>更新</div>
-                    <a className="ui basic label">
-                        0
-                    </a>
-                </div>
-                <Timeline style={{fontSize: 'medium', margin: '0px 0px 0px 70px'}}>
+                </Header>
+                <Button floated content={'Update'}  onClick={this.handleUpdateClick}
+                        style={{margin: '50px', backgroundColor:'#1BB394',color:'#E5FFFB',float:'right'}}/>
+                <Timeline lineColor={'#7f7f7f'} style={{fontSize: 'medium', margin: '0px 0px 0px 70px'}}>
                     {showEvents}
                 </Timeline>
-                <div className="ui grey right floated button" style={{margin: '50px'}} onClick={this.handleMoreClick}>更多..</div>
-            </div>
+                <Button floated content={'More...'}  onClick={this.handleMoreClick}
+                        style={{margin: '50px', backgroundColor:'#1BB394',color:'#E5FFFB',float:'right'}}/>
+            </Segment>
         );
     }
 }

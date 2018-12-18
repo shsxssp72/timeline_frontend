@@ -27,11 +27,11 @@ Timeline.propTypes = {
   style: PropTypes.object,
   lineColor: PropTypes.string,
   lineStyle: PropTypes.object
-}
+};
 
 Timeline.defaultProps = {
   style: {},
   lineStyle: {}
-}
+};
 
 export default Timeline

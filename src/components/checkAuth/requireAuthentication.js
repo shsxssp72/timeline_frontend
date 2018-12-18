@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import history from '../../history';
 import PropTypes from 'prop-types';
 import {
-    getTimeline
+    getTimeline,
+    switchHome
 } from "../../redux/actions";
 
 export default function requireAuthentication(Component) {
@@ -13,7 +14,8 @@ export default function requireAuthentication(Component) {
             token: PropTypes.string,
             start: PropTypes.string,
             end: PropTypes.string,
-            getTimeline: PropTypes.func
+            getTimeline: PropTypes.func,
+            switchHome: PropTypes.func
         };
 
         componentWillMount() {
@@ -27,6 +29,7 @@ export default function requireAuthentication(Component) {
         checkAuth() {
             if (!this.props.isLogin) {
                 history.push('/');
+                this.props.switchHome();
             }else{
                 this.props.getTimeline(this.props.token, this.props.start.toISOString(), this.props.end.toISOString())
             }
@@ -53,6 +56,9 @@ export default function requireAuthentication(Component) {
     const mapDispatchToProps = (dispatch, ownProps) => ({
         getTimeline: (token, start, end) => {
             dispatch(getTimeline(token, start, end))
+        },
+        switchHome: () => {
+            dispatch(switchHome())
         }
     });
 

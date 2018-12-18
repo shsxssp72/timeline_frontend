@@ -136,6 +136,6 @@ let style = {
   toggleEnabled: {
     cursor: 'pointer'
   }
-}
+};
 
 export default style
