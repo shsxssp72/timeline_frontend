@@ -6,9 +6,11 @@ import {
     changePassword,
     changeUsername
 } from "../redux/actions";
+import {switchRegister} from "../redux/actions/pageSwitchActions";
+import {closeLoginFail} from "../redux/actions/loginActions";
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 
 class LoginForm extends React.Component {
@@ -16,9 +18,12 @@ class LoginForm extends React.Component {
         username: PropTypes.string,
         password: PropTypes.string,
         isLogin: PropTypes.bool,
+        failed: PropTypes.bool,
         onChangeUsername: PropTypes.func,
         onChangePassword: PropTypes.func,
         onLogin: PropTypes.func,
+        switchRegister: PropTypes.func,
+        closeLoginFail: PropTypes.func
     };
 
     constructor(props) {
@@ -33,10 +38,6 @@ class LoginForm extends React.Component {
     componentDidMount() {
         this.setState({visible: true});
     }
-
-    check = () => {
-        alert('clicked!');
-    };
 
     render() {
         return (
@@ -55,7 +56,7 @@ class LoginForm extends React.Component {
                             <Header as={'h2'} style={{color: '#1BB394'}} textAlign={'center'}>
                                 Sign In
                             </Header>
-                            <Form>
+                            <Form className='attached fluid segment'>
                                 <Segment raised>
                                     <Message error visible={this.state.errorOccurs}
                                              header={'Ehh... Something went wrong?'}
@@ -65,14 +66,24 @@ class LoginForm extends React.Component {
                                                 placeholder={'Username'} error={this.state.errorOccurs}
                                                 value={this.props.username} onChange={this.props.onChangeUsername}/>
                                     <Form.Input fluid icon={'lock'} iconPosition={'left'}
-                                                placeholder={'Password'} type={'password'} error={this.state.errorOccurs}
+                                                placeholder={'Password'} type={'password'}
+                                                error={this.state.errorOccurs}
                                                 value={this.props.password} onChange={this.props.onChangePassword}/>
                                     <SubmitButton name={'Login'} expireTime={2}/>
                                 </Segment>
                             </Form>
+                            {
+                                this.props.failed === true ?
+                                    <Message negative={true}>
+                                        <i className={'close icon'} onClick={this.props.closeLoginFail}/>
+                                        <div className={'header'}>Ehh... Something went wrong?</div>
+                                        <p>Take a look at the username and the password. Make sure they are correct.</p>
+                                    </Message>: null
+                            }
                             <Message>
                                 <Icon name='help'/>
-                                New to us? <Link to={'/register'} style={{color: '#1BB394'}}>Sign Up</Link>
+                                New to us? <Link to={'/register'} style={{color: '#1BB394'}}
+                                                 onClick={this.props.switchRegister}>Sign Up</Link>
                             </Message>
                         </Grid.Column>
                     </Grid>
@@ -85,7 +96,8 @@ class LoginForm extends React.Component {
 const mapStateToProps = (state, ownProps) => ({
     username: state._loginReducer.username,
     password: state._loginReducer.password,
-    isLogin: state._loginReducer.isLogin
+    isLogin: state._loginReducer.isLogin,
+    failed: state._loginReducer.failed,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -94,6 +106,12 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     },
     onChangePassword: (event) => {
         dispatch(changePassword(event.target.value))
+    },
+    switchRegister: () => {
+        dispatch(switchRegister())
+    },
+    closeLoginFail: () => {
+        dispatch(closeLoginFail())
     }
 });
 

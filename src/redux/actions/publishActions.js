@@ -1,10 +1,11 @@
-import {CHANGE_TEXT, PUBLISH_SUCCESS, PUBLISH_FAIL} from "./actionTypes";
+import {CHANGE_TEXT, PUBLISH_SUCCESS, PUBLISH_FAIL, CLOSE_PUBLISH_FAIL, CLOSE_PUBLISH_SUCCESS} from "./actionTypes";
 
 
 export function publishContent(token, userid, content) {
+    alert(content);
     return async (dispatch) => {
         let data = {
-            content: content,
+            content: encodeURI(encodeURI(content)),
             contentId: '',
             displayName: '',
             publishTime: '',
@@ -15,7 +16,7 @@ export function publishContent(token, userid, content) {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json; charset=utf-8',
                 'Authorization' : `Bearer ${token}`
             },
         }).then( response =>
@@ -35,5 +36,23 @@ export function changeText(text) {
     return {
         type: CHANGE_TEXT,
         payload: text
+    }
+}
+
+export function publishFail() {
+    return {
+        type: PUBLISH_FAIL
+    }
+}
+
+export function closePublishFail() {
+    return {
+        type: CLOSE_PUBLISH_FAIL
+    }
+}
+
+export function closePublishSuccess() {
+    return {
+        type: CLOSE_PUBLISH_SUCCESS
     }
 }

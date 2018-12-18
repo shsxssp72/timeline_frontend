@@ -6,6 +6,7 @@ import {
     getTimeline,
     switchHome
 } from "../../redux/actions";
+import { illegalAccess, closeIllegalAccess} from "../../redux/actions/pageSwitchActions";
 
 export default function requireAuthentication(Component) {
     class AuthenticatedComponent extends React.Component {
@@ -15,7 +16,13 @@ export default function requireAuthentication(Component) {
             start: PropTypes.string,
             end: PropTypes.string,
             getTimeline: PropTypes.func,
-            switchHome: PropTypes.func
+            switchHome: PropTypes.func,
+            illegalAccess: PropTypes.func,
+            closePublishSuccess: PropTypes.func,
+            closeIllegalAccess: PropTypes.func,
+            closePublishFail: PropTypes.func,
+            closeRegisterFail: PropTypes.func,
+            closeLoginFail: PropTypes.func
         };
 
         componentWillMount() {
@@ -28,9 +35,11 @@ export default function requireAuthentication(Component) {
 
         checkAuth() {
             if (!this.props.isLogin) {
+                this.props.illegalAccess();
                 history.push('/');
                 this.props.switchHome();
             }else{
+                this.props.closeIllegalAccess();
                 this.props.getTimeline(this.props.token, this.props.start.toISOString(), this.props.end.toISOString())
             }
         }
@@ -59,7 +68,13 @@ export default function requireAuthentication(Component) {
         },
         switchHome: () => {
             dispatch(switchHome())
-        }
+        },
+        illegalAccess: () => {
+            dispatch(illegalAccess())
+        },
+        closeIllegalAccess: () => {
+            dispatch(closeIllegalAccess())
+        },
     });
 
     return connect(mapStateToProps, mapDispatchToProps)(AuthenticatedComponent);

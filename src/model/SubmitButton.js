@@ -7,6 +7,7 @@ import {
 	register,
 	switchIndex
 } from "../redux/actions";
+import { registerFailed } from "../redux/actions/registerActions";
 import {connect} from "react-redux";
 
 class SubmitButton extends React.Component
@@ -18,8 +19,10 @@ class SubmitButton extends React.Component
 		regname: PropTypes.string,
 		regpassword: PropTypes.string,
 		isLogin: PropTypes.bool,
+		agreed: PropTypes.bool,
 		onLogin: PropTypes.func,
-		onRegister: PropTypes.func
+		onRegister: PropTypes.func,
+		registerFailed: PropTypes.func
 	};
 
 	expireTime;
@@ -57,7 +60,11 @@ class SubmitButton extends React.Component
 			let regname = this.props.regname;
 			let regpassword = this.props.regpassword;
 
-			this.props.onRegister(displayname, regpassword, regname);
+			if(!this.props.agreed||(displayname==='')||(regname==='')||(regpassword==='')){
+				this.props.registerFailed();
+			}else{
+				this.props.onRegister(displayname, regpassword, regname);
+			}
 		}
 	}
 
@@ -101,7 +108,8 @@ const mapStateToProps = (state, ownProps) => ({
 	displayname: state._registerReducer.displayname,
 	regname: state._registerReducer.username,
 	regpassword: state._registerReducer.password,
-	isLogin: state._loginReducer.isLogin
+	isLogin: state._loginReducer.isLogin,
+	agreed: state._registerReducer.agreed
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -111,6 +119,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	},
 	onRegister: (displayname, password, username) => {
 		dispatch(register(displayname, password, username));
+	},
+	registerFailed: () => {
+		dispatch(registerFailed())
 	}
 });
 

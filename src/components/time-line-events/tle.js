@@ -9,14 +9,15 @@ import {
 } from "../../redux/actions/timelineActions";
 import {connect} from "react-redux";
 import PropTypes from 'prop-types';
-import {Button,Header,Icon,Segment} from "semantic-ui-react";
+import {Button,Header,Icon,Segment, Rail} from "semantic-ui-react";
 import Menu from '../menu';
 
 const globalStyles = {
     backgroundColor: 'rgb(238, 239, 239)',
     height: '100vh',
     fontFamily: 'Arial',
-    overflow: 'scroll'
+    overflow: 'scroll',
+    margin:'-20em, 100em, 0em, 100em'
 };
 
 class TLE extends React.Component{
@@ -59,6 +60,8 @@ class TLE extends React.Component{
         });
         return (
             <Segment style={globalStyles}>
+                <Rail position={'left'} dividing={true}/>
+                <Rail position={'right'} dividing={true}/>
                 <Header as={'h2'} className="ui icon header" style={{margin: '30px 0px 0px 35px', color:'#7f7f7f'}}>
                     <Icon name="clock icon"/>
                     <div className="content">

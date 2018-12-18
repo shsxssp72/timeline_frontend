@@ -1,9 +1,10 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL, LOG_OUT, CHANGE_USERNAME, CHANGE_PASSWORD, USERID_SET} from "../actions/actionTypes";
+import { LOGIN_SUCCESS, LOGIN_FAIL, LOG_OUT, CHANGE_USERNAME, CHANGE_PASSWORD, USERID_SET, CLOSE_LOGIN_FAIL} from "../actions/actionTypes";
 
 let initialState = {
     username: '',
     password: '',
     isLogin: false,
+    failed: false,
     jwtToken: '',
     userid: ''
 };
@@ -15,13 +16,15 @@ export default function loginReducer(state=initialState, action) {
         case CHANGE_PASSWORD:
             return {...state, password: action.payload};
         case LOGIN_SUCCESS:
-            return {...state, isLogin: true, jwtToken: action.payload};
+            return {...state, isLogin: true, failed: false, jwtToken: action.payload};
         case USERID_SET:
             return {...state, userid: action.payload};
         case LOGIN_FAIL:
-            return {...state, isLogin: false};
+            return {...state, isLogin: false, failed: true};
         case LOG_OUT:
-            return {...state, username: '', password: '', isLogin: false, jwtToken: '', userid: ''};
+            return {...state, username: '', password: '', isLogin: false, failed: false, jwtToken: '', userid: ''};
+        case CLOSE_LOGIN_FAIL:
+            return {...state, failed: false};
         default:
             return state;
     }

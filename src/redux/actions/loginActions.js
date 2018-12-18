@@ -1,5 +1,14 @@
 import history from '../../history';
-import {CHANGE_PASSWORD, CHANGE_USERNAME, LOG_OUT, LOGIN_FAIL, LOGIN_SUCCESS, TIMELINE_INIT, USERID_SET} from "./actionTypes";
+import {
+    CHANGE_PASSWORD,
+    CHANGE_USERNAME,
+    CLOSE_LOGIN_FAIL,
+    LOG_OUT,
+    LOGIN_FAIL,
+    LOGIN_SUCCESS,
+    TIMELINE_INIT,
+    USERID_SET
+} from "./actionTypes";
 import { switchHome } from "./pageSwitchActions";
 
 export function login(password, username) {
@@ -57,5 +66,11 @@ export function changeUsername(username) {
 export function logOut() {
     return {
         type: LOG_OUT
+    }
+}
+
+export function closeLoginFail() {
+    return {
+        type: CLOSE_LOGIN_FAIL
     }
 }
