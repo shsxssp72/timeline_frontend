@@ -49,7 +49,6 @@ export function getTimeline(token, start, end) {
 }
 
 export function updateTimeline(token, start, end) {
-    alert(start+end);                           //todo update problem
     return async (dispatch) => {
         let content = {
             end: end,

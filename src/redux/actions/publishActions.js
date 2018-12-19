@@ -2,13 +2,13 @@ import {CHANGE_TEXT, PUBLISH_SUCCESS, PUBLISH_FAIL, CLOSE_PUBLISH_FAIL, CLOSE_PU
 
 
 export function publishContent(token, userid, content) {
-    alert(content);                                     //todo publish problem
     return async (dispatch) => {
+        let publishTime = new Date();
         let data = {
-            content: encodeURI(encodeURI(content)),
+            content: content,
             contentId: '',
             displayName: '',
-            publishTime: '',
+            publishTime: publishTime,
             userId: userid
         };
 

@@ -22,7 +22,6 @@ export default function timelineEvents(state=initialState, action) {
             let year = startTime.getFullYear();
             startTime.setFullYear(year-1);
             let endTime1 = new Date(action.payload);
-            endTime1.setDate(endTime1.getDate()+1);
             return {...state, start: startTime, end: endTime1};
         case GET_TIMELINE:
             let arr1 = action.payload.map((item, index) => {

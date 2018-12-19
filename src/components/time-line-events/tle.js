@@ -44,7 +44,6 @@ class TLE extends React.Component {
 
     handleUpdateClick = () => {
         let d = new Date();
-        d.setDate(d.getDate() + 1);
         this.props.updateTimeline(this.props.token, this.props.end.toISOString(), d.toISOString());
         this.props.onUpdate(d);
     };
