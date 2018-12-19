@@ -10,6 +10,7 @@ import {
     USERID_SET
 } from "./actionTypes";
 import { switchHome } from "./pageSwitchActions";
+import {getTimeline} from "./timelineActions";
 
 export function login(password, username) {
     // return (dispatch) => {
@@ -37,6 +38,11 @@ export function login(password, username) {
                 dispatch({type: USERID_SET, payload: data.result});
                 let end = new Date();
                 dispatch({type: TIMELINE_INIT, payload: end});
+                let start = new Date(end);
+                end.setDate(end.getDate()+1);
+                let year = start.getFullYear();
+                start.setFullYear(year-1);
+                dispatch(getTimeline(data.jwtToken, start, end));
                 history.push('/');
                 dispatch(switchHome());
             }else{

@@ -30,11 +30,14 @@ export const CHANGE_REG_NAME = 'CHANGE_REG_NAME';
 export const TIMELINE_INIT = 'TIMELINE_INIT';
 //获取
 export const GET_TIMELINE = 'GET_TIMELINE';
+export const CONTENTID_SET  = 'CONTENTID_SET';
 //更新
+export const UPDATE_TIMELINE = 'UPDATE_TIMELINE';
 export const UPDATE = 'UPDATE';
 export const START_UPDATE = 'START_UPDATE';
 export const STOP_UPDATE = 'STOP_UPDATE';
 //更多
+export const MORE_TIMELINE = 'MORE_TIMELINE';
 export const MORE = 'MORE';
 export const START_MORE = 'START_MORE';
 export const STOP_MORE = 'STOP_MORE';

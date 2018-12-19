@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import history from '../../history';
 import PropTypes from 'prop-types';
 import {
-    getTimeline,
     switchHome
 } from "../../redux/actions";
 import { illegalAccess, closeIllegalAccess} from "../../redux/actions/pageSwitchActions";
@@ -12,10 +11,6 @@ export default function requireAuthentication(Component) {
     class AuthenticatedComponent extends React.Component {
         static propTypes = {
             isLogin: PropTypes.bool,
-            token: PropTypes.string,
-            start: PropTypes.string,
-            end: PropTypes.string,
-            getTimeline: PropTypes.func,
             switchHome: PropTypes.func,
             illegalAccess: PropTypes.func,
             closePublishSuccess: PropTypes.func,
@@ -40,7 +35,6 @@ export default function requireAuthentication(Component) {
                 this.props.switchHome();
             }else{
                 this.props.closeIllegalAccess();
-                this.props.getTimeline(this.props.token, this.props.start.toISOString(), this.props.end.toISOString())
             }
         }
 
@@ -57,15 +51,9 @@ export default function requireAuthentication(Component) {
 
     const mapStateToProps = (state, ownProps) => ({
         isLogin: state._loginReducer.isLogin,
-        token: state._loginReducer.jwtToken,
-        start: state._timelineEvents.start,
-        end: state._timelineEvents.end
     });
 
     const mapDispatchToProps = (dispatch, ownProps) => ({
-        getTimeline: (token, start, end) => {
-            dispatch(getTimeline(token, start, end))
-        },
         switchHome: () => {
             dispatch(switchHome())
         },
