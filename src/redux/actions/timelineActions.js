@@ -1,4 +1,4 @@
-import { GET_TIMELINE, UPDATE, MORE } from "./actionTypes";
+import {GET_TIMELINE, UPDATE, MORE, START_UPDATE, STOP_UPDATE, START_MORE, STOP_MORE} from "./actionTypes";
 
 export function updateEvents(end) {
     return {
@@ -37,5 +37,29 @@ export function getTimeline(token, start, end) {
         }).catch(error => {
             console.log(error);
         })
+    }
+}
+
+export function startUpdate() {
+    return {
+        type: START_UPDATE
+    }
+}
+
+export function stopUpdate() {
+    return {
+        type: STOP_UPDATE
+    }
+}
+
+export function startMore() {
+    return {
+        type: START_MORE
+    }
+}
+
+export function stopMore() {
+    return {
+        type: STOP_MORE
     }
 }

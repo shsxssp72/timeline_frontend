@@ -76,7 +76,8 @@ class RegisterForm extends React.Component {
                                 <Form.Input icon={'lock'} iconPosition={'left'} placeholder={'Password'}
                                             type={'password'} value={this.props.password}
                                             onChange={this.props.onChangeRegPass}/>
-                                <Form.Checkbox inline label={'I agree to the terms and conditions'} onChange={this.props.changeAgreed}/>
+                                <Form.Checkbox inline label={'I agree to the terms and conditions'}
+                                               onChange={this.props.changeAgreed}/>
                                 <SubmitButton name={'Register'} expireTime={2}/>
                             </Form>
                             {
@@ -84,7 +85,8 @@ class RegisterForm extends React.Component {
                                     <Message negative={true}>
                                         <i className={'close icon'} onClick={this.props.closeRegisterFail}/>
                                         <div className={'header'}>Ehh... Something went wrong?</div>
-                                        <p>Take a look at your information. Make sure they are valid and then try again.</p>
+                                        <p>Take a look at your information. Make sure they are valid and then try
+                                            again.</p>
                                     </Message> : null
                             }
                             <Message>

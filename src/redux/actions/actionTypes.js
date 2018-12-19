@@ -32,8 +32,12 @@ export const TIMELINE_INIT = 'TIMELINE_INIT';
 export const GET_TIMELINE = 'GET_TIMELINE';
 //更新
 export const UPDATE = 'UPDATE';
+export const START_UPDATE = 'START_UPDATE';
+export const STOP_UPDATE = 'STOP_UPDATE';
 //更多
 export const MORE = 'MORE';
+export const START_MORE = 'START_MORE';
+export const STOP_MORE = 'STOP_MORE';
 
 //发布
 export const PUBLISH_SUCCESS = 'PUBLISH_SUCCESS';
