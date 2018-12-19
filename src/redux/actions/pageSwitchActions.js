@@ -1,4 +1,12 @@
-import {SWITCH_HOME, SWITCH_INDEX, SWITCH_PUBLISH, SWITCH_LOGIN, SWITCH_REGISTER} from "./actionTypes";
+import {
+    SWITCH_HOME,
+    SWITCH_INDEX,
+    SWITCH_PUBLISH,
+    SWITCH_LOGIN,
+    SWITCH_REGISTER,
+    ILLEGAL_ACCESS,
+    CLOSE_ILLEGAL_ACCESS
+} from "./actionTypes";
 
 export function switchHome() {
     return {
@@ -27,5 +35,17 @@ export function switchLogin() {
 export function switchRegister() {
     return {
         type: SWITCH_REGISTER
+    }
+}
+
+export function illegalAccess() {
+    return {
+        type: ILLEGAL_ACCESS
+    }
+}
+
+export function closeIllegalAccess() {
+    return {
+        type: CLOSE_ILLEGAL_ACCESS
     }
 }

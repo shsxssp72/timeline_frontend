@@ -2,8 +2,16 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import 'semantic-ui-css/semantic.min.css';
-import {logOut, switchHome, switchIndex, switchPublish} from "../../redux/actions";
-import {switchLogin, switchRegister} from "../../redux/actions/pageSwitchActions";
+import {
+    logOut,
+    switchHome,
+    switchIndex,
+    switchPublish
+} from "../../redux/actions";
+import {switchLogin, switchRegister, closeIllegalAccess,} from "../../redux/actions/pageSwitchActions";
+import {closeLoginFail,} from "../../redux/actions/loginActions";
+import {closePublishFail, closePublishSuccess,} from "../../redux/actions/publishActions";
+import {closeRegisterFail,} from "../../redux/actions/registerActions";
 import {connect} from "react-redux";
 import history from "../../history";
 import {Button, Container, Menu, Segment} from "semantic-ui-react";
@@ -45,7 +53,7 @@ class StickyMenu extends React.Component {
         switchPublish: PropTypes.func,
         switchLogin: PropTypes.func,
         switchRegister: PropTypes.func,
-        onLogOut: PropTypes.func
+        onLogOut: PropTypes.func,
     };
 
     state = {
@@ -114,7 +122,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     switchHome: () => {
-        dispatch(switchHome())
+        dispatch(switchHome());
     },
     switchIndex: () => {
         dispatch(switchIndex())

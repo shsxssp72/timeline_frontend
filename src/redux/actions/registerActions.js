@@ -1,4 +1,10 @@
-import {REGISTER_SUCCESS, REGISTER_FAIL, CHANGE_REG_NAME, CHANGE_REG_NICK, CHANGE_REG_PASS} from "./actionTypes";
+import {
+    REGISTER_SUCCESS,
+    REGISTER_FAIL,
+    CHANGE_REG_NAME,
+    CHANGE_REG_NICK,
+    CHANGE_REG_PASS, CLOSE_REGISTER_FAIL, CHANGE_AGREED
+} from "./actionTypes";
 import history from '../../history';
 
 export function register(displayname, password, username) {
@@ -33,6 +39,18 @@ export function register(displayname, password, username) {
     }
 }
 
+export function registerFailed() {
+    return {
+        type: REGISTER_FAIL
+    }
+}
+
+export function changeAgreed() {
+    return {
+        type: CHANGE_AGREED
+    }
+}
+
 export function changeRegName(username) {
     return {
         type: CHANGE_REG_NAME,
@@ -51,5 +69,11 @@ export function changeRegPass(password) {
     return {
         type: CHANGE_REG_PASS,
         payload: password
+    }
+}
+
+export function closeRegisterFail() {
+    return {
+        type: CLOSE_REGISTER_FAIL
     }
 }
