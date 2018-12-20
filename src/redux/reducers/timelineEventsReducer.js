@@ -26,20 +26,23 @@ export default function timelineEvents(state=initialState, action) {
         case GET_TIMELINE:
             let arr1 = action.payload.map((item, index) => {
                 let publish = new Date(Date.parse(item.publishTime));
-                return { name: item.displayName, time: publish.toDateString(), content: item.content, img: ''}
+                let realContent1 = JSON.parse(item.content);
+                return { name: item.displayName, time: publish.toDateString(), content: realContent1.data, img: realContent1.imgUrl}
             });
             return {...state, currentEvents: arr1};
         case UPDATE_TIMELINE:
             let arr2 = action.payload.map((item, index) => {
                 let publish = new Date(Date.parse(item.publishTime));
-                return { name: item.displayName, time: publish.toDateString(), content: item.content, img: ''}
+                let realContent2 = JSON.parse(item.content);
+                return { name: item.displayName, time: publish.toDateString(), content: realContent2.data, img: realContent2.imgUrl}
             });
             let copy = arr2.concat(state.currentEvents);
             return {...state, currentEvents: copy};
         case MORE_TIMELINE:
             let arr3 = action.payload.map((item, index) => {
                 let publish = new Date(Date.parse(item.publishTime));
-                return { name: item.displayName, time: publish.toDateString(), content: item.content, img: ''}
+                let realContent3 = JSON.parse(item.content);
+                return { name: item.displayName, time: publish.toDateString(), content: realContent3.data, img: realContent3.imgUrl}
             });
             let copy2 = state.currentEvents.concat(arr3);
             return {...state, currentEvents: copy2};

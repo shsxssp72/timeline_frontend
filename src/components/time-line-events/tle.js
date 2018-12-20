@@ -9,11 +9,12 @@ import {
 } from "../../redux/actions/timelineActions";
 import {connect} from "react-redux";
 import PropTypes from 'prop-types';
-import {Button, Header, Icon, Segment, Rail, Container, Transition} from "semantic-ui-react";
+import {Button, Header, Icon, Segment, Rail, Container, Transition, Image} from "semantic-ui-react";
 
 const globalStyles = {
     backgroundColor: 'rgb(238, 239, 239)',
-    fontFamily: 'Arial'
+    fontFamily: 'Arial',
+    minHeight: '50em'
 };
 
 class TLE extends React.Component {
@@ -70,6 +71,11 @@ class TLE extends React.Component {
                                createdAt={item.time}
                                titleStyle={{fontSize: 'small'}}
                 >
+                    {
+                        item.img === '' ?
+                            null :
+                            <Image src={item.img} />
+                    }
                     {item.content}
                 </TimelineEvent>
             );
