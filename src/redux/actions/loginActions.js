@@ -11,6 +11,7 @@ import {
 } from "./actionTypes";
 import { switchHome } from "./pageSwitchActions";
 import {getTimeline} from "./timelineActions";
+import { BASE_URL } from "../../constants";
 
 export function login(password, username) {
     // return (dispatch) => {
@@ -24,7 +25,7 @@ export function login(password, username) {
     // }
     return async (dispatch) => {
         let content = {password: password, username: username};
-        await fetch('http://192.168.1.101:8080/login', {
+        await fetch(BASE_URL+'/login', {
             method: 'POST',
             body: JSON.stringify(content),
             headers: {

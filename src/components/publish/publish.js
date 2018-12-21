@@ -25,7 +25,7 @@ class Publish extends React.Component {
         publishContent: PropTypes.func,
         publishFail: PropTypes.func,
         closePublishFail: PropTypes.func,
-        closePublishSuccess: PropTypes.func
+        closePublishSuccess: PropTypes.func,
     };
 
     constructor(props) {
@@ -108,7 +108,7 @@ const mapStateToProps = (state, ownProps) => ({
     token: state._loginReducer.jwtToken,
     imgUrl: state._publishEvents.imgUrl,
     failed: state._publishEvents.failed,
-    successful: state._publishEvents.successful
+    successful: state._publishEvents.successful,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -126,7 +126,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     },
     closePublishSuccess: () => {
         dispatch(closePublishSuccess())
-    }
+    },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Publish);
