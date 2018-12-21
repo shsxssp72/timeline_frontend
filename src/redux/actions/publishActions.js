@@ -26,7 +26,7 @@ export function publishContent(token, userid, content, imgUrl) {
             userId: userid
         };
 
-        await fetch('http://192.168.1.101:8080/api/content/create', {
+        await fetch('http://127.0.0.1:8080/api/content/create', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {

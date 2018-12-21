@@ -24,7 +24,7 @@ export function login(password, username) {
     // }
     return async (dispatch) => {
         let content = {password: password, username: username};
-        await fetch('http://192.168.1.101:8080/login', {
+        await fetch('http://127.0.0.1:8080/login', {
             method: 'POST',
             body: JSON.stringify(content),
             headers: {
