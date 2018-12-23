@@ -5,6 +5,7 @@ import {Image, Form, Segment} from "semantic-ui-react";
 import { uploadPicture } from "../redux/actions/publishActions";
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
+import { MAX_PICTURE_SIZE } from "../constants";
 
 
 class ImageForm extends React.Component {
@@ -40,7 +41,7 @@ class ImageForm extends React.Component {
                             onDropAccepted={this.onImageDrop.bind(this)}
                             multiple={false}
                             accept="image/*"
-                            maxSize={1048576}
+                            maxSize={MAX_PICTURE_SIZE}
                             onDropRejected={() => {
                                 alert('rejected!');
                             }}
@@ -55,7 +56,7 @@ class ImageForm extends React.Component {
                                         {
                                             isDragActive ?
                                                 <p>Drop files here...</p> :
-                                                <p>Try dropping some files here, or click to select files to upload.</p>
+                                                <p>Try dropping some files here, or click to select files to upload(less than 1 MB).</p>
                                         }
                                     </Segment>
                                 )

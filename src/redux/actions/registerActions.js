@@ -6,6 +6,7 @@ import {
     CHANGE_REG_PASS, CLOSE_REGISTER_FAIL, CHANGE_AGREED
 } from "./actionTypes";
 import history from '../../history';
+import { BASE_URL } from "../../constants";
 
 export function register(displayname, password, username) {
     return async (dispatch) => {
@@ -15,7 +16,7 @@ export function register(displayname, password, username) {
             username: username
         };
 
-        await fetch('http://127.0.0.1:8080/register', {
+        await fetch(BASE_URL+'/register', {
             method: 'POST',
             body: JSON.stringify(content),
             headers: {

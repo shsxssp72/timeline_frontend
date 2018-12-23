@@ -4,6 +4,7 @@ import {
     MORE,
     CONTENTID_SET, UPDATE_TIMELINE, MORE_TIMELINE
 } from "./actionTypes";
+import { BASE_URL } from "../../constants";
 
 export function updateEvents(end) {
     return {
@@ -27,7 +28,7 @@ export function getTimeline(token, start, end) {
             user_id: 0
         };
 
-        await fetch('http://127.0.0.1:8080/api/content/detail/by_period', {
+        await fetch(BASE_URL+'/api/content/detail/by_period', {
             method: 'POST',
             body: JSON.stringify(content),
             headers: {
@@ -56,7 +57,7 @@ export function updateTimeline(token, start, end) {
             user_id: 0
         };
 
-        await fetch('http://127.0.0.1:8080/api/content/detail/by_period', {
+        await fetch(BASE_URL+'/api/content/detail/by_period', {
             method: 'POST',
             body: JSON.stringify(content),
             headers: {
@@ -84,7 +85,7 @@ export function moreTimeline(token, start, num) {
             user_id: 0
         };
 
-        await fetch('http://127.0.0.1:8080/api/content/detail/by_id_range', {
+        await fetch(BASE_URL+'/api/content/detail/by_id_range', {
             method: 'POST',
             body: JSON.stringify(content),
             headers: {

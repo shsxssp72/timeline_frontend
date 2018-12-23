@@ -7,6 +7,7 @@ import {
     PICTURE
 } from "./actionTypes";
 import request from 'superagent';
+import { BASE_URL } from "../../constants";
 
 const CLOUDINARY_UPLOAD_PRESET = 'nzw8sov3';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/hlps10425/image/upload';
@@ -26,7 +27,7 @@ export function publishContent(token, userid, content, imgUrl) {
             userId: userid
         };
 
-        await fetch('http://127.0.0.1:8080/api/content/create', {
+        await fetch(BASE_URL+'/api/content/create', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {

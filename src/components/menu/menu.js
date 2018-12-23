@@ -9,6 +9,7 @@ import {
     switchPublish
 } from "../../redux/actions";
 import {switchLogin, switchRegister, closeIllegalAccess,} from "../../redux/actions/pageSwitchActions";
+import {updateEvents, updateTimeline} from "../../redux/actions/timelineActions";
 import {closeLoginFail,} from "../../redux/actions/loginActions";
 import {closePublishFail, closePublishSuccess,} from "../../redux/actions/publishActions";
 import {closeRegisterFail,} from "../../redux/actions/registerActions";
@@ -47,6 +48,8 @@ class StickyMenu extends React.Component {
         publish: PropTypes.string,
         login: PropTypes.string,
         register: PropTypes.string,
+        token: PropTypes.string,
+        end: PropTypes.string,
         isLogin: PropTypes.bool,
         switchHome: PropTypes.func,
         switchIndex: PropTypes.func,
@@ -54,6 +57,8 @@ class StickyMenu extends React.Component {
         switchLogin: PropTypes.func,
         switchRegister: PropTypes.func,
         onLogOut: PropTypes.func,
+        updateTimeline: PropTypes.func,
+        onUpdate: PropTypes.func,
     };
 
     state = {
@@ -62,6 +67,13 @@ class StickyMenu extends React.Component {
     };
     stickTopMenu = () => this.setState({menuFixed: true});
     unStickTopMenu = () => this.setState({menuFixed: false});
+
+    handleIndexClick = () => {
+        this.props.switchIndex();
+        let d = new Date();
+        this.props.updateTimeline(this.props.token, this.props.end.toISOString(), d.toISOString());
+        this.props.onUpdate(d);
+    };
 
     render() {
         const {menuFixed, overlayFixed} = this.state;
@@ -95,7 +107,7 @@ class StickyMenu extends React.Component {
                               style={MenuItemStyle}>
                             Home
                         </Link>
-                        <Link to="/index" className={this.props.index} onClick={this.props.switchIndex}
+                        <Link to="/index" className={this.props.index} onClick={this.handleIndexClick}
                               style={MenuItemStyle}>
                             TimeLine
                         </Link>
@@ -117,15 +129,23 @@ const mapStateToProps = (state, ownProps) => ({
     publish: state._currentPage.publish,
     login: state._currentPage.login,
     register: state._currentPage.register,
-    isLogin: state._loginReducer.isLogin
+    isLogin: state._loginReducer.isLogin,
+    token: state._loginReducer.jwtToken,
+    end: state._timelineEvents.end
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+    onUpdate: (end) => {
+        dispatch(updateEvents(end));
+    },
+    updateTimeline: (token, start, end) => {
+        dispatch(updateTimeline(token, start, end))
+    },
     switchHome: () => {
         dispatch(switchHome());
     },
     switchIndex: () => {
-        dispatch(switchIndex())
+        dispatch(switchIndex());
     },
     switchPublish: () => {
         dispatch(switchPublish())
@@ -140,7 +160,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         dispatch(logOut());
         dispatch(switchHome());
         history.push('/');
-    }
+    },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StickyMenu);
