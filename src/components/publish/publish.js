@@ -41,7 +41,7 @@ class Publish extends React.Component {
     }
 
     handlePublishClick = () => {
-        if (this.props.text === '') {
+        if (this.props.text === '' || this.props.text.length > 1000) {
             this.props.publishFail();
         } else {
             this.props.publishContent(this.props.token, this.props.userid, this.props.text, this.props.imgUrl);
