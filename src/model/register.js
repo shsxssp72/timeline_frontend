@@ -67,13 +67,13 @@ class RegisterForm extends React.Component {
                                          header={'Ehh... Something went wrong?'}
                                          list={['It seems that the username has been snapped up. Why not try another username?']}/>
 
-                                <Form.Input icon={'user'} iconPosition={'left'} placeholder={'Username'}
+                                <Form.Input icon={'user'} iconPosition={'left'} placeholder={'Username(less than 15 characters)'}
                                             type={'text'} error={this.state.errorOccurs}
                                             value={this.props.username} onChange={this.props.onChangeRegName}/>
-                                <Form.Input icon={'address card'} iconPosition={'left'} placeholder={'Nickname'}
+                                <Form.Input icon={'address card'} iconPosition={'left'} placeholder={'Nickname(less than 15 characters)'}
                                             type={'text'} value={this.props.displayname}
                                             onChange={this.props.onChangeRegNick}/>
-                                <Form.Input icon={'lock'} iconPosition={'left'} placeholder={'Password'}
+                                <Form.Input icon={'lock'} iconPosition={'left'} placeholder={'Password(less than 255 characters)'}
                                             type={'password'} value={this.props.password}
                                             onChange={this.props.onChangeRegPass}/>
                                 <Form.Checkbox inline label={'I agree to the terms and conditions'}

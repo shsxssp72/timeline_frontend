@@ -38,9 +38,13 @@ export function publishContent(token, userid, content, imgUrl) {
             response.json()
         ).then(data => {
             console.log(data);
-            dispatch({type: PUBLISH_SUCCESS});
-            dispatch(changeText(''));
-            dispatch({type: PICTURE, payload: ''});
+            if(data.result === 'success'){
+                dispatch({type: PUBLISH_SUCCESS});
+                dispatch(changeText(''));
+                dispatch({type: PICTURE, payload: ''});
+            }else{
+                dispatch({type: PUBLISH_FAIL});
+            }
         }).catch(error => {
             console.log(error);
             dispatch({type: PUBLISH_FAIL});

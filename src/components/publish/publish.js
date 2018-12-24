@@ -87,7 +87,7 @@ class Publish extends React.Component {
                         <ImageForm/>
                         <Form style={{margin: '1em 7em 1em 7em'}}>
                             <Segment className="field">
-                                <textarea value={this.props.text} onChange={this.props.onChangeText}/>
+                                <textarea value={this.props.text} onChange={this.props.onChangeText} placeholder={'less than 1000 characters'}/>
                             </Segment>
                             <Button onClick={this.handlePublishClick}
                                     content={'Submit'}

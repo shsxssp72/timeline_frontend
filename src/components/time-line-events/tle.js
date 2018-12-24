@@ -17,6 +17,11 @@ const globalStyles = {
     minHeight: '50em'
 };
 
+const inlineStyle = {
+    'word-wrap' : 'break-word',
+    'word-break' : 'normal'
+};
+
 class TLE extends React.Component {
     static propTypes = {
         timelineEvents: PropTypes.array,
@@ -74,9 +79,11 @@ class TLE extends React.Component {
                     {
                         item.img === '' ?
                             null :
-                            <Image src={item.img} />
+                            <Image src={item.img}/>
                     }
-                    {item.content}
+                    <div style={inlineStyle}>
+                        {item.content}
+                    </div>
                 </TimelineEvent>
             );
         });

@@ -11,7 +11,7 @@ import { BASE_URL } from "../../constants";
 export function register(displayname, password, username) {
     return async (dispatch) => {
         let content = {
-            displayname: displayname,
+            displayName: displayname,
             password: password,
             username: username
         };
