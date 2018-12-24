@@ -142,18 +142,38 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         dispatch(updateTimeline(token, start, end))
     },
     switchHome: () => {
+        dispatch(closePublishSuccess());
+        dispatch(closePublishFail());
+        dispatch(closeRegisterFail());
+        dispatch(closeLoginFail());
         dispatch(switchHome());
     },
     switchIndex: () => {
+        dispatch(closePublishSuccess());
+        dispatch(closePublishFail());
+        dispatch(closeRegisterFail());
+        dispatch(closeLoginFail());
         dispatch(switchIndex());
     },
     switchPublish: () => {
+        dispatch(closePublishSuccess());
+        dispatch(closePublishFail());
+        dispatch(closeRegisterFail());
+        dispatch(closeLoginFail());
         dispatch(switchPublish())
     },
     switchLogin: () => {
+        dispatch(closePublishSuccess());
+        dispatch(closePublishFail());
+        dispatch(closeRegisterFail());
+        dispatch(closeLoginFail());
         dispatch(switchLogin())
     },
     switchRegister: () => {
+        dispatch(closePublishSuccess());
+        dispatch(closePublishFail());
+        dispatch(closeRegisterFail());
+        dispatch(closeLoginFail());
         dispatch(switchRegister())
     },
     onLogOut: () => {

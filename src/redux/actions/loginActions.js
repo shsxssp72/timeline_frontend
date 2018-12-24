@@ -7,7 +7,8 @@ import {
     LOGIN_FAIL,
     LOGIN_SUCCESS,
     TIMELINE_INIT,
-    USERID_SET
+    USERID_SET,
+    CLOSE_ILLEGAL_ACCESS
 } from "./actionTypes";
 import { switchHome } from "./pageSwitchActions";
 import {getTimeline} from "./timelineActions";
@@ -43,6 +44,7 @@ export function login(password, username) {
                 let year = start.getFullYear();
                 start.setFullYear(year-1);
                 dispatch(getTimeline(data.jwtToken, start, end));
+                dispatch({type: CLOSE_ILLEGAL_ACCESS});
                 history.push('/');
                 dispatch(switchHome());
             }else{

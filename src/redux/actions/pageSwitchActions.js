@@ -5,7 +5,7 @@ import {
     SWITCH_LOGIN,
     SWITCH_REGISTER,
     ILLEGAL_ACCESS,
-    CLOSE_ILLEGAL_ACCESS
+    CLOSE_ILLEGAL_ACCESS,
 } from "./actionTypes";
 
 export function switchHome() {
