@@ -1,7 +1,10 @@
-## Dependency
+## Static Version
 
-- yarn add semantic-ui-react
+---
 
-- yarn add semantic-ui-css
+_Http server required after `npm run build`_
 
-- yarn add prop-types
+_Or build a local server by using `serve -s build` at project root(`npm install -g serve` 
+if needed)_
+
+

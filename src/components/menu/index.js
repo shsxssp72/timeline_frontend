@@ -1,3 +1,3 @@
-import Menu from './menu';
+import StickyMenu from './menu';
 
-export default Menu;
+export default StickyMenu;

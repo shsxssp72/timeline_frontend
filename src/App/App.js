@@ -1,10 +1,11 @@
 import React from 'react';
-import Menu from '../components/menu';
+import StickyMenu from '../components/menu';
+import Home from "../components/home/home";
 
 export default () => {
 	return (
 		<div>
-			<Menu/>
+			<StickyMenu/>
 		</div>
 	);
 }
