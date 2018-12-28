@@ -47,7 +47,7 @@ class Home extends React.Component {
                         <Header as={'h1'} content={'Time-Line'} style={{fontSize: '4em', color: '#7f7f7f'}}/>
                         <Header as={'h2'} content={'Record every bit of your life'}
                                 style={{margin: '1em 0em 5em 0em', color: '#7f7f7f'}}/>
-                        <Button as={Link} to="/index" size={'huge'}
+                        <Button as={Link} to="/main" size={'huge'}
                                 onClick={this.props.switchIndex}
                                 style={{backgroundColor: '#1BB394', color: '#E5FFFB'}}>
                             Get Started

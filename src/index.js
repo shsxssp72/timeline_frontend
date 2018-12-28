@@ -24,7 +24,7 @@ ReactDOM.render(
 				<StickyMenu/>
                 <Switch>
                     <Route exact path="/" component={Home}/>
-                    <Route path="/index" component={requireAuthentication(TLE)}/>
+                    <Route path="/main" component={requireAuthentication(TLE)}/>
                     <Route path="/login" component={LoginForm}/>
                     <Route path="/publish" component={requireAuthentication(Publish)}/>
                     <Route path="/register" component={RegisterForm}/>

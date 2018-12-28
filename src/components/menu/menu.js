@@ -107,7 +107,7 @@ class StickyMenu extends React.Component {
                               style={MenuItemStyle}>
                             Home
                         </Link>
-                        <Link to="/index" className={this.props.index} onClick={this.handleIndexClick}
+                        <Link to="/main" className={this.props.index} onClick={this.handleIndexClick}
                               style={MenuItemStyle}>
                             TimeLine
                         </Link>
