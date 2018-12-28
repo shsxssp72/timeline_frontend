@@ -70,9 +70,12 @@ class StickyMenu extends React.Component {
 
     handleIndexClick = () => {
         this.props.switchIndex();
-        let d = new Date();
-        this.props.updateTimeline(this.props.token, this.props.end.toISOString(), d.toISOString());
-        this.props.onUpdate(d);
+        if(this.props.isLogin===true)
+        {
+            let d = new Date();
+            this.props.updateTimeline(this.props.token, this.props.end.toISOString(), d.toISOString());
+            this.props.onUpdate(d);
+        }
     };
 
     render() {
