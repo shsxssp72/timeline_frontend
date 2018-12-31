@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 import {Link} from "react-router-dom";
 
 
-class LoginForm extends React.Component {
+export class LoginForm extends React.Component {
     static propTypes = {
         username: PropTypes.string,
         password: PropTypes.string,

@@ -41,7 +41,7 @@ const MenuItemStyle =
     };
 
 
-class StickyMenu extends React.Component {
+export class StickyMenu extends React.Component {
     static propTypes = {
         home: PropTypes.string,
         index: PropTypes.string,

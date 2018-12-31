@@ -22,7 +22,7 @@ const inlineStyle = {
     'word-break' : 'normal'
 };
 
-class TLE extends React.Component {
+export class TLE extends React.Component {
     static propTypes = {
         timelineEvents: PropTypes.array,
         token: PropTypes.string,

@@ -8,7 +8,7 @@ import {connect} from "react-redux";
 import { MAX_PICTURE_SIZE } from "../constants";
 
 
-class ImageForm extends React.Component {
+export class ImageForm extends React.Component {
 
     static propTypes = {
         imgUrl: PropTypes.string,

@@ -13,7 +13,7 @@ import {closeRegisterFail, changeAgreed} from "../redux/actions/registerActions"
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 
-class RegisterForm extends React.Component {
+export class RegisterForm extends React.Component {
     static propTypes = {
         displayname: PropTypes.string,
         username: PropTypes.string,

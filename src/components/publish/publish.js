@@ -13,7 +13,7 @@ const globalStyles = {
     minHeight: '100em',
 };
 
-class Publish extends React.Component {
+export class Publish extends React.Component {
     static propTypes = {
         text: PropTypes.string,
         userid: PropTypes.string,

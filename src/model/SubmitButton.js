@@ -10,7 +10,7 @@ import {
 import {registerFailed} from "../redux/actions/registerActions";
 import {connect} from "react-redux";
 
-class SubmitButton extends React.Component {
+export class SubmitButton extends React.Component {
     static propTypes = {
         username: PropTypes.string,
         password: PropTypes.string,

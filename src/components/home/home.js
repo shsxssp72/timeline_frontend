@@ -12,7 +12,7 @@ const globalStyles = {
     backgroundColor: '#efefef'
 };
 
-class Home extends React.Component {
+export class Home extends React.Component {
     static propTypes = {
         visible: PropTypes.bool,
         illegal: PropTypes.bool,
