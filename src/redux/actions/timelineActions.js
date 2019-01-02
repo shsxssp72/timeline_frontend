@@ -4,7 +4,7 @@ import {
     MORE,
     CONTENTID_SET, UPDATE_TIMELINE, MORE_TIMELINE
 } from "./actionTypes";
-import { BASE_URL } from "../../constants";
+import {BASE_URL,INIT_TIMELINE_SIZE} from "../../constants";
 
 export function updateEvents(end) {
     return {
@@ -23,12 +23,15 @@ export function moreEvents(start) {
 export function getTimeline(token, start, end) {
     return async (dispatch) => {
         let content = {
-            end: end,
-            start: start,
+            contentStartId: -1,
+            end: '',
+            numberToRetrieve: INIT_TIMELINE_SIZE,
+            start: '',
             user_id: 0
         };
 
-        await fetch(BASE_URL+'/api/content/detail/by_period', {
+
+        await fetch(BASE_URL+'/api/content/detail/by_id_range', {
             method: 'POST',
             body: JSON.stringify(content),
             headers: {
