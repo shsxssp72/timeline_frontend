@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/redux/actions/actionTypes.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\..\index.html">All files</a> / <a href="index.html">src/redux/actions</a> actionTypes.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>37/37</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>37/37</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span></td><td class="text"><pre class="prettyprint lang-js">//页面切换
+export const SWITCH_HOME = 'SWITCH_HOME';
+export const SWITCH_INDEX = 'SWITCH_INDEX';
+export const SWITCH_PUBLISH = 'SWITCH_PUBLISH';
+export const SWITCH_LOGIN = 'SWITCH_LOGIN';
+export const SWITCH_REGISTER = 'SWITCH_REGISTER';
+export const ILLEGAL_ACCESS = 'ILLEGAL_ACCESS';
+export const CLOSE_ILLEGAL_ACCESS = 'CLOSE_ILLEGAL_ACCESS';
+&nbsp;
+//登录
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const CLOSE_LOGIN_FAIL = 'CLOSE_LOGIN_FAIL';
+export const USERID_SET = 'USERID_SET';
+export const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
+export const CHANGE_USERNAME = 'CHANGE_USERNAME';
+export const LOG_OUT = 'LOG_OUT';
+&nbsp;
+//注册
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const REGISTER_FAIL = 'REGISTER_FAIL';
+export const CLOSE_REGISTER_FAIL = 'CLOSE_REGISTER_FAIL';
+export const CHANGE_AGREED = 'CHANGE_AGREED';
+export const CHANGE_REG_NICK = 'CHANGE_REG_NICK';
+export const CHANGE_REG_PASS = 'CHANGE_REG_PASS';
+export const CHANGE_REG_NAME = 'CHANGE_REG_NAME';
+&nbsp;
+&nbsp;
+//Timeline初始化
+export const TIMELINE_INIT = 'TIMELINE_INIT';
+//获取
+export const GET_TIMELINE = 'GET_TIMELINE';
+export const CONTENTID_SET  = 'CONTENTID_SET';
+//更新
+export const UPDATE_TIMELINE = 'UPDATE_TIMELINE';
+export const UPDATE = 'UPDATE';
+//更多
+export const MORE_TIMELINE = 'MORE_TIMELINE';
+export const MORE = 'MORE';
+&nbsp;
+//发布
+export const PUBLISH_SUCCESS = 'PUBLISH_SUCCESS';
+export const PUBLISH_FAIL = 'PUBLISH_FAIL';
+export const CLOSE_PUBLISH_FAIL = 'CLOSE_PUBLISH_FAIL';
+export const CLOSE_PUBLISH_SUCCESS = 'CLOSE_PUBLISH_SUCCESS';
+//上载图片
+export const PICTURE = 'PICTURE';
+//输入变更
+export const CHANGE_TEXT = 'CHANGE_TEXT';
+&nbsp;
+&nbsp;
+//修改
+export const MODIFY = 'MODIFY';
+//删除
+export const DELETE = 'DELETE';
+//测试
+export const TEST = 'TEST';</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Dec 31 2018 13:49:19 GMT+0800 (GMT+08:00)
+</div>
+</div>
+<script src="..\..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\..\sorter.js"></script>
+</body>
+</html>
